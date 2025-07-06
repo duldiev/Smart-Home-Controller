@@ -100,7 +100,7 @@ Open:
 http://localhost:1880/ui
 ```
 
-## ✅ Notes
+## Notes
 
 - Full simulation on Wokwi (no physical ESP32 required)
 - Node-RED used for real-time UI and automation
