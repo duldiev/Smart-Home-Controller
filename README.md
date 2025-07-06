@@ -59,6 +59,8 @@ Wokwi (ESP32) →
      - Temperature > 30 → Fan ON
      - Motion == 1 and Light < 400 → Light ON
 
+![Node-Red Board](images/node-red-structure.png)
+
 ## Step 3: LED Automation Logic
 
 ### Fan Rule
@@ -95,12 +97,17 @@ IF motion == 1 AND light < 400 → Turn on Light (LED on GPIO 14)
    - Add an `http request` node after it
    - Leave URL field empty; use values from `msg`
 
+![Dashboard](images/ubidots-device.png)
+![Dashboard](images/ubidots-variables.png)
+
 ## View Dashboard
 
 Open:
 ```
 http://localhost:1880/ui
 ```
+
+![Dashboard](images/dashboard.png)
 
 ## Notes
 
