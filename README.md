@@ -45,6 +45,8 @@ Wokwi (ESP32) →
    DHTesp.h
    ```
 
+![Wokri Simation](images/wokwi-simulation.png)
+
 ## Step 2: Node-RED Setup
 
 1. Install and open Node-RED at http://localhost:1880
