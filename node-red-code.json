@@ -1,0 +1,391 @@
+[
+    {
+        "id": "6a3ad6160b246632",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e9d8f3cfa191a569",
+        "type": "mqtt in",
+        "z": "6a3ad6160b246632",
+        "name": "",
+        "topic": "home/sensors",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c2ef53cd1f4bc5f4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "b4af06e2fffc62c2"
+            ]
+        ]
+    },
+    {
+        "id": "b4af06e2fffc62c2",
+        "type": "json",
+        "z": "6a3ad6160b246632",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 590,
+        "y": 240,
+        "wires": [
+            [
+                "fa1dc336f173cf54",
+                "612678547cbcbcf0"
+            ]
+        ]
+    },
+    {
+        "id": "612678547cbcbcf0",
+        "type": "debug",
+        "z": "6a3ad6160b246632",
+        "name": "json debug",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "eeda078aa301f264",
+        "type": "ui_gauge",
+        "z": "6a3ad6160b246632",
+        "name": "",
+        "group": "66bf809d73721693",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "Celsius",
+        "format": "{{msg.payload.temperature}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1055,
+        "y": 280,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "e87d37af45ce73e4",
+        "type": "ui_gauge",
+        "z": "6a3ad6160b246632",
+        "name": "",
+        "group": "66bf809d73721693",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{msg.payload.humidity}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#0061ff",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1100,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "dd4468c20a6da54b",
+        "type": "ui_gauge",
+        "z": "6a3ad6160b246632",
+        "name": "",
+        "group": "66bf809d73721693",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Light",
+        "label": "units",
+        "format": "{{msg.payload.light}}",
+        "min": 0,
+        "max": "2000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1090,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ce9e99fc3ee20978",
+        "type": "ui_text",
+        "z": "6a3ad6160b246632",
+        "group": "66bf809d73721693",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Motion",
+        "format": "{{msg.payload.motionvalue}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1320,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6660d00eee0fcb7c",
+        "type": "ui_text",
+        "z": "6a3ad6160b246632",
+        "group": "66bf809d73721693",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Fan",
+        "format": "{{msg.payload.fanstatus}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1310,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "38ded550702a894f",
+        "type": "function",
+        "z": "6a3ad6160b246632",
+        "name": "Fan Status Text",
+        "func": "if (msg.payload.temperature > 30) {\n    msg.payload.fanstatus = \"ON\";\n} else {\n    msg.payload.fanstatus = \"OFF\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 520,
+        "wires": [
+            [
+                "6660d00eee0fcb7c"
+            ]
+        ]
+    },
+    {
+        "id": "fa1dc336f173cf54",
+        "type": "function",
+        "z": "6a3ad6160b246632",
+        "name": "Parsing payload",
+        "func": "msg.payload = JSON.parse(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 280,
+        "wires": [
+            [
+                "eeda078aa301f264",
+                "e87d37af45ce73e4",
+                "dd4468c20a6da54b",
+                "38ded550702a894f",
+                "9ef10e0b53ee0127",
+                "be57a6b3b0705af5",
+                "79361991afdd48c1"
+            ]
+        ]
+    },
+    {
+        "id": "fd1f7572ee25504a",
+        "type": "http request",
+        "z": "6a3ad6160b246632",
+        "name": "",
+        "method": "use",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1370,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9ef10e0b53ee0127",
+        "type": "function",
+        "z": "6a3ad6160b246632",
+        "name": "build HTTP request",
+        "func": "msg.headers = {\n    \"X-Auth-Token\": \"BBUS-isfvfSBBiWd81bS68bC5HCdLGMnjFF\",\n    \"Content-Type\": \"application/json\"\n};\n\nmsg.payload = {\n    temperature: msg.payload.temperature,\n    humidity: msg.payload.humidity,\n    light: msg.payload.light,\n    motion: msg.payload.motion\n};\n\nmsg.url = \"https://industrial.api.ubidots.com/api/v1.6/devices/smarthome/\";\nmsg.method = \"POST\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1170,
+        "y": 220,
+        "wires": [
+            [
+                "fd1f7572ee25504a"
+            ]
+        ]
+    },
+    {
+        "id": "be57a6b3b0705af5",
+        "type": "function",
+        "z": "6a3ad6160b246632",
+        "name": "Light on/off Text",
+        "func": "if (msg.payload.motion === 1 && msg.payload.light < 1000) {\n    msg.payload.lightstatus = \"ON\";\n} else {\n    msg.payload.lightstatus = \"OFF\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 580,
+        "wires": [
+            [
+                "4ed3ae313363562f"
+            ]
+        ]
+    },
+    {
+        "id": "4ed3ae313363562f",
+        "type": "ui_text",
+        "z": "6a3ad6160b246632",
+        "group": "66bf809d73721693",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Light",
+        "format": "{{msg.payload.lightstatus}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1310,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "79361991afdd48c1",
+        "type": "function",
+        "z": "6a3ad6160b246632",
+        "name": "Motion Status Text",
+        "func": "if (msg.payload.motion === 1) {\n    msg.payload.motionvalue = \"True\";\n} else {\n    msg.payload.motionvalue = \"False\";\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1130,
+        "y": 460,
+        "wires": [
+            [
+                "ce9e99fc3ee20978"
+            ]
+        ]
+    },
+    {
+        "id": "c2ef53cd1f4bc5f4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "66bf809d73721693",
+        "type": "ui_group",
+        "name": "Sensors",
+        "tab": "fa96e6ea994f02ed",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fa96e6ea994f02ed",
+        "type": "ui_tab",
+        "name": "Smart Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
